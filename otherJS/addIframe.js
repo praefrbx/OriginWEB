@@ -39,14 +39,16 @@ async function loadHTMLInto(divSelector, htmlFile) {
 
     iframe.onload = async () => {
         try {
-            // 1. Đọc nội dung file CSS
-            const cssText = await fetch("/root.css").then((r) => r.text());
+            let cssText = await fetch("/OriginWEB/root.css").then((r) => r.text());
+            cssText += `:root {
+                            --bg-itemBackground: rgb(23, 23, 23) ;
+                            --bg-appbackground: rgb(0, 0, 0) ;
+                            --bg-color: rgb(255, 255, 255) ;
+                        }`;
 
-            // 2. Tạo thẻ <style>
             const styleTag = document.createElement("style");
             styleTag.textContent = cssText;
 
-            // 3. Thêm vào đầu <head>
             const head = iframe.contentDocument.head;
             head.insertBefore(styleTag, head.firstChild);
         } catch (err) {

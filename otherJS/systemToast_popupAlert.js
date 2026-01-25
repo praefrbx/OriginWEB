@@ -160,7 +160,7 @@ function hideAllAlerts() {
 
 // ===-- system toast --===
 
-function tb_system(message) {
+function tb_system(message, timeOut = 3000) {
     const toast = document.getElementById("systemToast");
     toast.textContent = message;
     addClassAnim(toast, "block", "show");
@@ -168,5 +168,5 @@ function tb_system(message) {
     clearTimeout(tb_system._timeout);
     tb_system._timeout = setTimeout(() => {
         removeClassAnim(toast, "none", "show");
-    }, 3000);
+    }, timeOut);
 }

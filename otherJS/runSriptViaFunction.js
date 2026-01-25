@@ -27,4 +27,3 @@ function runFor(duration = 300, callback) {
 
     requestAnimationFrame(loop);
 }
-
